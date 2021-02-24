@@ -1,0 +1,82 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import call_out_compact, hero with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('misinformation-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('misinformation-page-desc') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('seo') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero mzp-has-image mzp-t-dark mzp-t-product-firefox">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ self.page_title() }}</h1>
+      <div class="mzp-c-hero-desc">
+        <p>{{ self.page_desc() }}</p>
+      </div>
+      <div class="mzp-c-hero-cta">
+        <div class="download-firefox">
+          {{ download_firefox(dom_id='misinformation-download', download_location='primary cta') }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mzp-c-hero-image">
+    {{ high_res_img('img/firefox/more/misinformation/hero.jpg', {'alt': '', 'width': '700', 'height': '385'}) }}
+  </div>
+</section>
+<div class="mzp-l-content mzp-t-content-md">
+  <article class="mzp-c-article">
+
+    <h2>{{ ftl('misinformation-what-is-heading') }}</h2>
+
+    <p>{{ ftl('misinformation-disinformation') }}</p>
+    <p>{{ ftl('misinformation-ultimately-harmful') }}</p>
+
+    <h2>{{ ftl('misinformation-false-info-heading') }}</h2>
+
+    <p>{{ ftl('misinformation-widespread-online') }}</p>
+    <p>{{ ftl('misinformation-tracking-advertising') }}</p>
+    <p>{{ ftl('misinformation-social-newtorks') }}</p>
+
+    <h2>{{ ftl('misinformation-spot-online-heading') }}</h2>
+
+    <p>{{ ftl('misinformation-thing-you-can-do') }}</p>
+
+    <ul class="mzp-u-list-styled">
+      <li>{{ ftl('misinformation-look-at-url') }}</li>
+      <li>{{ ftl('misinformation-overly-sensational') }}</li>
+      <li>{{ ftl('misinformation-content-up-to-date') }}</li>
+      <li>{{ ftl('misinformation-credible-publication') }}</li>
+      <li>{{ ftl('misinformation-images-captions') }}</li>
+    </ul>
+
+    <h2>{{ ftl('misinformation-how-firefox-helps-heading') }}</h2>
+
+    <p>{{ ftl('misinformation-firefox-keeps-trackers', firefox=url('firefox.new')) }}</p>
+
+    <p>{{ ftl('misiinformation-social-media-clean', container=url('firefox.facebookcontainer.index')) }}</p>
+
+    {% if LANG.startswith('en-') or LANG == 'de' %}
+      {{ ftl('misinformation-surface-content', recommended='#todo', pocket_hits='https://getpocket.com/explore/pocket-hits-signup', pocket='https://getpocket.com/')}}
+    {% endif %}
+  </article>
+</div>
+
+{% call call_out_compact(
+  title=ftl('misinformation-designed-to-protect'),
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+) %}
+<div class="download-firefox">
+  {{ download_firefox(dom_id='misinformation-bottom-download', download_location='secondary cta') }}
+</div>
+{% endcall %}
+
+{% endblock %}
